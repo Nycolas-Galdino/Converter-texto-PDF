@@ -1,47 +1,34 @@
-import PyPDF2  
+from logging import warning
 import os
-from googletrans import Translator
+import sys
+from PySide6.QtCore import QCoreApplication
+from PySide6.QtWidgets import *
+from screens.ui_mainwindow import Ui_MainWindow
 
-try:
-    os.remove(os.getcwd() + '/ptFile.txt')
-except:
-    pass
-
-
-with open(os.getcwd() + '/Catálogo Trurium 2022.pdf', 'rb') as pdfFileObj:
-     
-    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)  
+class MainWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self) -> None:
+        super(MainWindow, self).__init__()
         
-    print(pdfReader.numPages)  
+        self.setupUi(self)
+        self.setWindowTitle("TransPy - Tradutor de PDF")
         
-    for i in range(pdfReader.numPages):
-        print(f"Página {i}: \n")
-
-        pageObj = pdfReader.getPage(i)  
-            
-        pageText = str(pageObj.extractText()) 
+        self.btnProcurarArquivo.clicked.connect(self.procurarArquivo)
         
-        try:
-            ptFile = open(os.getcwd() + '/ptFile.txt', "r", encoding="utf-8")
-            tempText = ptFile.read() + "\n"
-            ptFile.close
-        except:
-            tempText = ""    
-        
-        ptFile = open(os.getcwd() + '/ptFile.txt', "w", encoding="utf-8")
-        ptFile.write(tempText + pageText)
-        ptFile.close
+    def procurarArquivo(self):
+        self.arquivo = QFileDialog.getOpenFileName(self, "Open PDF", os.getcwd(), "PDF Files (*.pdf)" )[0]
+        return self.arquivo
     
-    ptFile = open(os.getcwd() + '/ptFile.txt', "r", encoding="utf-8")
-    texto = ptFile.read()
-    ptFile.close
-        
-    tradutor = Translator(service_urls=['translate.googleapis.com'])
+    def traduzirPDF(self):
+        pass
     
-    textoTraduzido = tradutor.translate(texto, dest='en')
+    def copiarTextoPDF(self):
+        pass
     
-    print(textoTraduzido.text)
+    def copiarTextoTraduzido(self):
+        pass
     
-    enFile = open(os.getcwd() + '/enFile.txt', "w", encoding="utf-8")
-    enFile.write(textoTraduzido.text)
-    enFile.close
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
