@@ -3,7 +3,6 @@ import os
 from googletrans import Translator
 
 def traduzir(arquivo, linguaSelecionada = "en"):
-    #Apaga 
     try:
         dir = os.getcwd() + "/files"
         for f in os.listdir(dir):
@@ -28,7 +27,7 @@ def traduzir(arquivo, linguaSelecionada = "en"):
             except:
                 tempText = ""    
             
-            ptFile = open(os.getcwd() + f'/files/{linguaSelecionada}File.txt', "w", encoding="utf-8")
+            ptFile = open(os.getcwd() + f'/files/pdfFile.txt', "w", encoding="utf-8")
             ptFile.write(tempText + pageText)
             ptFile.close
         
@@ -39,9 +38,9 @@ def traduzir(arquivo, linguaSelecionada = "en"):
         tradutor = Translator(service_urls=['translate.googleapis.com'])
         
         textoTraduzido = tradutor.translate(texto, dest=linguaSelecionada)
-        
-        print(textoTraduzido.text)
-        
+                
         tempFile = open(os.getcwd() + f'/files/{linguaSelecionada}File.txt', "w", encoding="utf-8")
         tempFile.write(textoTraduzido.text)
         tempFile.close
+        
+        return textoTraduzido.text

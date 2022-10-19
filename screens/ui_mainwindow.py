@@ -16,15 +16,16 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
-    QLabel, QMainWindow, QPushButton, QScrollBar,
-    QSizePolicy, QStatusBar, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QComboBox, QFrame,
+    QHBoxLayout, QLabel, QMainWindow, QPushButton,
+    QScrollArea, QSizePolicy, QSpacerItem, QStatusBar,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(796, 459)
+        MainWindow.resize(748, 536)
         MainWindow.setMinimumSize(QSize(460, 318))
         MainWindow.setStyleSheet(u"QFrame{\n"
 "border: 1px solid black;}\n"
@@ -49,8 +50,8 @@ class Ui_MainWindow(object):
         self.actionAcessar_pasta_atual.setObjectName(u"actionAcessar_pasta_atual")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_4 = QVBoxLayout(self.centralwidget)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
         font = QFont()
@@ -102,8 +103,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.cbLingua)
 
 
-        self.verticalLayout_3.addWidget(self.frame)
+        self.verticalLayout_4.addWidget(self.frame)
 
+        self.verticalLayout_3 = QVBoxLayout()
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.widget_2 = QWidget(self.centralwidget)
@@ -119,37 +122,33 @@ class Ui_MainWindow(object):
 "}")
         self.verticalLayout = QVBoxLayout(self.widget_2)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.frame_2 = QFrame(self.widget_2)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFont(font)
-        self.frame_2.setFrameShape(QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.frame_2)
+        self.scrollArea = QScrollArea(self.widget_2)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.scrollArea.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 340, 326))
+        self.horizontalLayout_3 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(5, 0, 0, 0)
-        self.lblTextoPDF = QLabel(self.frame_2)
+        self.lblTextoPDF = QLabel(self.scrollAreaWidgetContents)
         self.lblTextoPDF.setObjectName(u"lblTextoPDF")
-        sizePolicy.setHeightForWidth(self.lblTextoPDF.sizePolicy().hasHeightForWidth())
-        self.lblTextoPDF.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.lblTextoPDF.sizePolicy().hasHeightForWidth())
+        self.lblTextoPDF.setSizePolicy(sizePolicy1)
         font1 = QFont()
         font1.setBold(False)
         self.lblTextoPDF.setFont(font1)
-        self.lblTextoPDF.setStyleSheet(u"padding: 2%")
+        self.lblTextoPDF.setStyleSheet(u"")
         self.lblTextoPDF.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.lblTextoPDF.setWordWrap(True)
-        self.lblTextoPDF.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
+        self.lblTextoPDF.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
         self.horizontalLayout_3.addWidget(self.lblTextoPDF)
 
-        self.vcbTextoPDF = QScrollBar(self.frame_2)
-        self.vcbTextoPDF.setObjectName(u"vcbTextoPDF")
-        self.vcbTextoPDF.setFont(font)
-        self.vcbTextoPDF.setOrientation(Qt.Vertical)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
-        self.horizontalLayout_3.addWidget(self.vcbTextoPDF)
-
-
-        self.verticalLayout.addWidget(self.frame_2)
+        self.verticalLayout.addWidget(self.scrollArea)
 
         self.btnCopiarTextoPDF = QPushButton(self.widget_2)
         self.btnCopiarTextoPDF.setObjectName(u"btnCopiarTextoPDF")
@@ -166,23 +165,16 @@ class Ui_MainWindow(object):
         self.widget.setStyleSheet(u"")
         self.verticalLayout_2 = QVBoxLayout(self.widget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.frame_3 = QFrame(self.widget)
-        self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setFont(font)
-        self.frame_3.setStyleSheet(u"QFrame{\n"
-"background-color: white;\n"
-"}\n"
-"\n"
-"QScrollBar {\n"
-"position: fixed;\n"
-"right: 2\n"
-"}")
-        self.frame_3.setFrameShape(QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_4 = QHBoxLayout(self.frame_3)
+        self.scrollArea_2 = QScrollArea(self.widget)
+        self.scrollArea_2.setObjectName(u"scrollArea_2")
+        self.scrollArea_2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.scrollArea_2.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 340, 326))
+        self.horizontalLayout_4 = QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setContentsMargins(5, 0, 0, 0)
-        self.lblTextoTraduzido = QLabel(self.frame_3)
+        self.lblTextoTraduzido = QLabel(self.scrollAreaWidgetContents_2)
         self.lblTextoTraduzido.setObjectName(u"lblTextoTraduzido")
         self.lblTextoTraduzido.setFont(font1)
         self.lblTextoTraduzido.setStyleSheet(u"padding: 2%")
@@ -192,20 +184,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.lblTextoTraduzido)
 
-        self.vcbTextoTraduzido = QScrollBar(self.frame_3)
-        self.vcbTextoTraduzido.setObjectName(u"vcbTextoTraduzido")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.vcbTextoTraduzido.sizePolicy().hasHeightForWidth())
-        self.vcbTextoTraduzido.setSizePolicy(sizePolicy3)
-        self.vcbTextoTraduzido.setFont(font)
-        self.vcbTextoTraduzido.setOrientation(Qt.Vertical)
+        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
 
-        self.horizontalLayout_4.addWidget(self.vcbTextoTraduzido)
-
-
-        self.verticalLayout_2.addWidget(self.frame_3)
+        self.verticalLayout_2.addWidget(self.scrollArea_2)
 
         self.btnCopiarTextoTraduzido = QPushButton(self.widget)
         self.btnCopiarTextoTraduzido.setObjectName(u"btnCopiarTextoTraduzido")
@@ -228,10 +209,40 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.btnTraduzir)
 
+
+        self.verticalLayout_4.addLayout(self.verticalLayout_3)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer)
+
+        self.label = QLabel(self.centralwidget)
+        self.label.setObjectName(u"label")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy3)
+        font2 = QFont()
+        font2.setPointSize(6)
+        font2.setBold(True)
+        self.label.setFont(font2)
+        self.label.setStyleSheet(u"background-color: rgba(0,0,0,0);")
+
+        self.horizontalLayout_5.addWidget(self.label)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_5)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
+#if QT_CONFIG(shortcut)
+        self.lblNomeDoArquivo.setBuddy(self.cbLingua)
+#endif // QT_CONFIG(shortcut)
 
         self.retranslateUi(MainWindow)
 
@@ -258,5 +269,6 @@ class Ui_MainWindow(object):
         self.lblTextoTraduzido.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Texto traduzido</p></body></html>", None))
         self.btnCopiarTextoTraduzido.setText(QCoreApplication.translate("MainWindow", u"Copiar", None))
         self.btnTraduzir.setText(QCoreApplication.translate("MainWindow", u"Traduzir", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Desenvolvido por Nycolas Galdino", None))
     # retranslateUi
 
