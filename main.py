@@ -6,6 +6,7 @@ from PySide6.QtWidgets import *
 from screens.ui_mainwindow import Ui_MainWindow
 import pyperclip as clip
 from traduction.traduction import traduzir
+from traduction.dict import lerListadeLinguagens
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -17,6 +18,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #######################################
         self.setupUi(self)
         self.setWindowTitle("TransPy - Tradutor de PDF")
+        self.dict = 
+        self.keysDict = list(self.dict.keys())
+        self.cbLingua.addItems(self.keysDict)
         
         #######################################
         #Ações dos botões
@@ -33,7 +37,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         return self.arquivo
     
     def traduzirPDF(self):
-        tradução = traduzir(arquivo= self.arquivo, linguaSelecionada= self.cbLingua.currentText())
+        linguaSelecionada = self.cbLingua.currentText()
+        
+        if linguaSelecionada == "Default (English)":
+            linguaSelecionada = "en"
+        
+        tradução = traduzir(arquivo= self.arquivo, linguaSelecionada= self.dict[lerListadeLinguagens])
         
         pdfFile = open(os.getcwd() + '/files/pdfFile.txt', "r", encoding="utf-8")
         texto = pdfFile.read()

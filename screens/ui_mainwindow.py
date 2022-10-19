@@ -18,8 +18,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QComboBox, QFrame,
     QHBoxLayout, QLabel, QMainWindow, QPushButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QStatusBar,
-    QVBoxLayout, QWidget)
+    QScrollArea, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -90,14 +90,12 @@ class Ui_MainWindow(object):
 
         self.cbLingua = QComboBox(self.frame)
         self.cbLingua.addItem("")
-        self.cbLingua.addItem("")
-        self.cbLingua.addItem("")
-        self.cbLingua.addItem("")
-        self.cbLingua.addItem("")
         self.cbLingua.setObjectName(u"cbLingua")
         sizePolicy.setHeightForWidth(self.cbLingua.sizePolicy().hasHeightForWidth())
         self.cbLingua.setSizePolicy(sizePolicy)
         self.cbLingua.setFont(font)
+        self.cbLingua.setCurrentText(u"Default (English)")
+        self.cbLingua.setMaxVisibleItems(150)
         self.cbLingua.setInsertPolicy(QComboBox.InsertAlphabetically)
 
         self.horizontalLayout_2.addWidget(self.cbLingua)
@@ -129,7 +127,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 340, 326))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 340, 346))
         self.horizontalLayout_3 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.lblTextoPDF = QLabel(self.scrollAreaWidgetContents)
@@ -140,8 +138,10 @@ class Ui_MainWindow(object):
         font1.setBold(False)
         self.lblTextoPDF.setFont(font1)
         self.lblTextoPDF.setStyleSheet(u"")
+        self.lblTextoPDF.setScaledContents(True)
         self.lblTextoPDF.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.lblTextoPDF.setWordWrap(True)
+        self.lblTextoPDF.setOpenExternalLinks(True)
         self.lblTextoPDF.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
         self.horizontalLayout_3.addWidget(self.lblTextoPDF)
@@ -171,16 +171,18 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 340, 326))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 340, 346))
         self.horizontalLayout_4 = QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.lblTextoTraduzido = QLabel(self.scrollAreaWidgetContents_2)
         self.lblTextoTraduzido.setObjectName(u"lblTextoTraduzido")
         self.lblTextoTraduzido.setFont(font1)
-        self.lblTextoTraduzido.setStyleSheet(u"padding: 2%")
+        self.lblTextoTraduzido.setStyleSheet(u"")
+        self.lblTextoTraduzido.setScaledContents(True)
         self.lblTextoTraduzido.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.lblTextoTraduzido.setWordWrap(True)
-        self.lblTextoTraduzido.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
+        self.lblTextoTraduzido.setOpenExternalLinks(True)
+        self.lblTextoTraduzido.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
         self.horizontalLayout_4.addWidget(self.lblTextoTraduzido)
 
@@ -213,6 +215,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addLayout(self.verticalLayout_3)
 
         self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -237,9 +240,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout_5)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 #if QT_CONFIG(shortcut)
         self.lblNomeDoArquivo.setBuddy(self.cbLingua)
 #endif // QT_CONFIG(shortcut)
@@ -254,16 +254,11 @@ class Ui_MainWindow(object):
         self.actionAcessar_pasta_atual.setText(QCoreApplication.translate("MainWindow", u"Acessar pasta atual", None))
         self.btnProcurarArquivo.setText(QCoreApplication.translate("MainWindow", u"Selecionar arquivo", None))
         self.lblNomeDoArquivo.setText(QCoreApplication.translate("MainWindow", u"Nome do arquivo", None))
-        self.cbLingua.setItemText(0, QCoreApplication.translate("MainWindow", u"Selecione", None))
-        self.cbLingua.setItemText(1, QCoreApplication.translate("MainWindow", u"en", None))
-        self.cbLingua.setItemText(2, QCoreApplication.translate("MainWindow", u"pt-br", None))
-        self.cbLingua.setItemText(3, QCoreApplication.translate("MainWindow", u"de", None))
-        self.cbLingua.setItemText(4, QCoreApplication.translate("MainWindow", u"es", None))
+        self.cbLingua.setItemText(0, QCoreApplication.translate("MainWindow", u"Default (English)", None))
 
 #if QT_CONFIG(tooltip)
         self.cbLingua.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Selecione ao idioma que deseja traduzir.</p><p><br/></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.cbLingua.setCurrentText(QCoreApplication.translate("MainWindow", u"Selecione", None))
         self.lblTextoPDF.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Texto do PDF</p></body></html>", None))
         self.btnCopiarTextoPDF.setText(QCoreApplication.translate("MainWindow", u"Copiar", None))
         self.lblTextoTraduzido.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Texto traduzido</p></body></html>", None))
