@@ -18,21 +18,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("TransPy - Tradutor de PDF")
         self.dict = lerListadeLinguagens()
+        
+        #Repete a tentativa de leitura do arquivo JSON
         try: 
             self.keysDict = list(self.dict.keys())   # type: ignore
-        except:
-             
+        except:  
             while True:
-                print("Não foi possível ler o arquivo 'languagestotraduction.json', tentando novamente...")
                 try :self.keysDict = list(self.dict.keys())   # type: ignore
                 except: pass
                 
                 if self.keysDict != None:
                     break       
-        
-        
+                        
         self.cbLingua.addItems(self.keysDict)
-        
         
         #######################################
         #Ações dos botões
@@ -61,29 +59,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if linguaSelecionada == "Default (English)":
             linguaSelecionada = "English (english)"
         
-        textoLido = self.enTextoPDF.text()
-        
-        print(textoLido)
-        
+        textoLido = self.enTextoPDF.toPlainText()
+                
         traducao = traduzir(texto=textoLido , linguaSelecionada= self.dict[linguaSelecionada])   # type: ignore
         
         self.enTextoTraduzido.setText(QCoreApplication.translate("MainWindow", traducao, None))
         
     def copiarTextoPDF(self):
-        textoPDF = self.enTextoPDF.text()
-        
+        textoPDF = self.enTextoPDF.toPlainText()
         clip.copy(textoPDF)
-        
-        print("\033[0;49;92mCopiado com sucesso! \033[m")
-    
+            
     def copiarTextoTraduzido(self):
-        textoTraduzido = self.enTextoTraduzido.text()
-        
-        clip.copy(textoTraduzido)
-        
-        
-        print("\033[0;49;92mCopiado com sucesso! \033[m")
-    
+        textoTraduzido = self.enTextoTraduzido.toPlainText()
+        clip.copy(textoTraduzido)    
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)

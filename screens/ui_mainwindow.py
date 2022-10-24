@@ -136,6 +136,7 @@ class Ui_MainWindow(object):
         font1.setBold(False)
         self.enTextoPDF.setFont(font1)
         self.enTextoPDF.setStyleSheet(u"border:none")
+        self.enTextoPDF.setAutoFormatting(QTextEdit.AutoAll)
         self.enTextoPDF.setOverwriteMode(True)
         self.enTextoPDF.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
@@ -172,6 +173,7 @@ class Ui_MainWindow(object):
         self.enTextoTraduzido = QTextEdit(self.scrollAreaWidgetContents_2)
         self.enTextoTraduzido.setObjectName(u"enTextoTraduzido")
         self.enTextoTraduzido.setStyleSheet(u"border:none")
+        self.enTextoTraduzido.setAutoFormatting(QTextEdit.AutoAll)
         self.enTextoTraduzido.setOverwriteMode(True)
         self.enTextoTraduzido.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
