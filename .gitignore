@@ -2,8 +2,9 @@
 /Catálogo Trurium 2022.pdf
 /venv
 screens/MainWindow.ui
-files/pdfFile.txt
+/files
 screens/__pycache__/ui_mainwindow.cpython-310.pyc
 files/deFile.txt
 traduction/__pycache__/dict.cpython-310.pyc
 traduction/__pycache__/traduction.cpython-310.pyc
+/build

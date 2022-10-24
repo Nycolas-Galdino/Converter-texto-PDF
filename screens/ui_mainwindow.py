@@ -18,8 +18,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QComboBox, QFrame,
     QHBoxLayout, QLabel, QMainWindow, QPushButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+    QScrollArea, QSizePolicy, QSpacerItem, QTextEdit,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -128,23 +128,18 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
         self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 340, 346))
-        self.horizontalLayout_3 = QHBoxLayout(self.scrollAreaWidgetContents)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.lblTextoPDF = QLabel(self.scrollAreaWidgetContents)
-        self.lblTextoPDF.setObjectName(u"lblTextoPDF")
-        sizePolicy1.setHeightForWidth(self.lblTextoPDF.sizePolicy().hasHeightForWidth())
-        self.lblTextoPDF.setSizePolicy(sizePolicy1)
+        self.verticalLayout_5 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.enTextoPDF = QTextEdit(self.scrollAreaWidgetContents)
+        self.enTextoPDF.setObjectName(u"enTextoPDF")
         font1 = QFont()
         font1.setBold(False)
-        self.lblTextoPDF.setFont(font1)
-        self.lblTextoPDF.setStyleSheet(u"")
-        self.lblTextoPDF.setScaledContents(True)
-        self.lblTextoPDF.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.lblTextoPDF.setWordWrap(True)
-        self.lblTextoPDF.setOpenExternalLinks(True)
-        self.lblTextoPDF.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
+        self.enTextoPDF.setFont(font1)
+        self.enTextoPDF.setStyleSheet(u"border:none")
+        self.enTextoPDF.setOverwriteMode(True)
+        self.enTextoPDF.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
-        self.horizontalLayout_3.addWidget(self.lblTextoPDF)
+        self.verticalLayout_5.addWidget(self.enTextoPDF)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -172,19 +167,15 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
         self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 340, 346))
-        self.horizontalLayout_4 = QHBoxLayout(self.scrollAreaWidgetContents_2)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.lblTextoTraduzido = QLabel(self.scrollAreaWidgetContents_2)
-        self.lblTextoTraduzido.setObjectName(u"lblTextoTraduzido")
-        self.lblTextoTraduzido.setFont(font1)
-        self.lblTextoTraduzido.setStyleSheet(u"")
-        self.lblTextoTraduzido.setScaledContents(True)
-        self.lblTextoTraduzido.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.lblTextoTraduzido.setWordWrap(True)
-        self.lblTextoTraduzido.setOpenExternalLinks(True)
-        self.lblTextoTraduzido.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
+        self.verticalLayout_6 = QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.enTextoTraduzido = QTextEdit(self.scrollAreaWidgetContents_2)
+        self.enTextoTraduzido.setObjectName(u"enTextoTraduzido")
+        self.enTextoTraduzido.setStyleSheet(u"border:none")
+        self.enTextoTraduzido.setOverwriteMode(True)
+        self.enTextoTraduzido.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
 
-        self.horizontalLayout_4.addWidget(self.lblTextoTraduzido)
+        self.verticalLayout_6.addWidget(self.enTextoTraduzido)
 
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
 
@@ -259,9 +250,9 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.cbLingua.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Selecione ao idioma que deseja traduzir.</p><p><br/></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.lblTextoPDF.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Texto do PDF</p></body></html>", None))
+        self.enTextoPDF.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Texto do PDF", None))
         self.btnCopiarTextoPDF.setText(QCoreApplication.translate("MainWindow", u"Copiar", None))
-        self.lblTextoTraduzido.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Texto traduzido</p></body></html>", None))
+        self.enTextoTraduzido.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Texto traduzido", None))
         self.btnCopiarTextoTraduzido.setText(QCoreApplication.translate("MainWindow", u"Copiar", None))
         self.btnTraduzir.setText(QCoreApplication.translate("MainWindow", u"Traduzir", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Desenvolvido por Nycolas Galdino", None))
