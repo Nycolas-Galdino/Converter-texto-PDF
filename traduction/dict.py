@@ -37,9 +37,6 @@ def atualizarListadeLinguagens():
         value = f"{str(value).capitalize()} ({valueTraduct})"
         
         langs[value] = key
-        
-        print(value , " - ", key)
-        
     
     with open(os.getcwd() + "/traduction/languagestotraduction.json", "w") as file:
         json.dump(langs,file, indent=3)

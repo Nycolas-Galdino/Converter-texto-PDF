@@ -8,26 +8,44 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-    QCursor, QFont, QFontDatabase, QGradient,
-    QIcon, QImage, QKeySequence, QLinearGradient,
-    QPainter, QPalette, QPixmap, QRadialGradient,
-    QTransform)
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QComboBox, QFrame,
-    QHBoxLayout, QLabel, QMainWindow, QPushButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QTextEdit,
-    QVBoxLayout, QWidget)
+from PySide6.QtCore import (QCoreApplication, QMetaObject, QRect,
+    QSize, Qt)
+from PySide6.QtGui import (QAction, QFont, QIcon)
+from PySide6.QtWidgets import (QAbstractScrollArea, QComboBox, QFrame,
+    QHBoxLayout, QLabel, QMenu,
+    QMenuBar, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QTextEdit, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(748, 536)
-        MainWindow.setMinimumSize(QSize(460, 318))
-        MainWindow.setStyleSheet(u"QFrame{\n"
+        MainWindow.resize(731, 527)
+        MainWindow.setMinimumSize(QSize(524, 472))
+        icon = QIcon()
+        icon.addFile(u"../icon/arquivo-python-by-Muhammed-Ali.png", QSize(), QIcon.Normal, QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet(u"QMenuBar {\n"
+"border-bottom:1px solid black;\n"
+"	background-color: rgb(255, 255, 255);\n"
+"}")
+        self.actionAcessar_pasta_atual = QAction(MainWindow)
+        self.actionAcessar_pasta_atual.setObjectName(u"actionAcessar_pasta_atual")
+        self.actionSobre_o_Softwarew = QAction(MainWindow)
+        self.actionSobre_o_Softwarew.setObjectName(u"actionSobre_o_Softwarew")
+        self.actionContato_com_o_suporte = QAction(MainWindow)
+        self.actionContato_com_o_suporte.setObjectName(u"actionContato_com_o_suporte")
+        self.actionComo_usar_o_softwar = QAction(MainWindow)
+        self.actionComo_usar_o_softwar.setObjectName(u"actionComo_usar_o_softwar")
+        self.actionBaixar_novo_pacote_de_l_nguas = QAction(MainWindow)
+        self.actionBaixar_novo_pacote_de_l_nguas.setObjectName(u"actionBaixar_novo_pacote_de_l_nguas")
+        self.actionAbrir_pasta_dos_arquivos = QAction(MainWindow)
+        self.actionAbrir_pasta_dos_arquivos.setObjectName(u"actionAbrir_pasta_dos_arquivos")
+        self.actionSalvar_pesquisa = QAction(MainWindow)
+        self.actionSalvar_pesquisa.setObjectName(u"actionSalvar_pesquisa")
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setStyleSheet(u"QFrame{\n"
 "border: 1px solid black;}\n"
 "\n"
 "QLabel{\n"
@@ -44,12 +62,11 @@ class Ui_MainWindow(object):
 "background-color: rgb(235,235,235)\n"
 "}\n"
 "\n"
-"*{\n"
-"background-color: lightgray}")
-        self.actionAcessar_pasta_atual = QAction(MainWindow)
-        self.actionAcessar_pasta_atual.setObjectName(u"actionAcessar_pasta_atual")
-        self.centralwidget = QWidget(MainWindow)
-        self.centralwidget.setObjectName(u"centralwidget")
+"QMenuBar{\n"
+"background-color:white\n"
+"}\n"
+"\n"
+"*{background-color: lightgrey }")
         self.verticalLayout_4 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.frame = QFrame(self.centralwidget)
@@ -122,20 +139,30 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.scrollArea = QScrollArea(self.widget_2)
         self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.scrollArea.setAutoFillBackground(True)
+        self.scrollArea.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"padding: 0")
+        self.scrollArea.setFrameShape(QFrame.NoFrame)
+        self.scrollArea.setFrameShadow(QFrame.Plain)
         self.scrollArea.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 340, 346))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 332, 316))
         self.verticalLayout_5 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.enTextoPDF = QTextEdit(self.scrollAreaWidgetContents)
         self.enTextoPDF.setObjectName(u"enTextoPDF")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.enTextoPDF.sizePolicy().hasHeightForWidth())
+        self.enTextoPDF.setSizePolicy(sizePolicy3)
         font1 = QFont()
         font1.setBold(False)
         self.enTextoPDF.setFont(font1)
-        self.enTextoPDF.setStyleSheet(u"border:none")
+        self.enTextoPDF.setStyleSheet(u"border:none;\n"
+"width: 100%")
         self.enTextoPDF.setAutoFormatting(QTextEdit.AutoAll)
         self.enTextoPDF.setOverwriteMode(True)
         self.enTextoPDF.setTextInteractionFlags(Qt.LinksAccessibleByKeyboard|Qt.LinksAccessibleByMouse|Qt.TextBrowserInteraction|Qt.TextEditable|Qt.TextEditorInteraction|Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
@@ -167,7 +194,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 340, 346))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 331, 316))
         self.verticalLayout_6 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.enTextoTraduzido = QTextEdit(self.scrollAreaWidgetContents_2)
@@ -216,11 +243,11 @@ class Ui_MainWindow(object):
 
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy3)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy4)
         font2 = QFont()
         font2.setPointSize(6)
         font2.setBold(True)
@@ -233,9 +260,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout_5)
 
         MainWindow.setCentralWidget(self.centralwidget)
+        self.menuBar = QMenuBar(MainWindow)
+        self.menuBar.setObjectName(u"menuBar")
+        self.menuBar.setGeometry(QRect(0, 0, 731, 21))
+        self.menuArquivo = QMenu(self.menuBar)
+        self.menuArquivo.setObjectName(u"menuArquivo")
+        self.menuOp_es = QMenu(self.menuBar)
+        self.menuOp_es.setObjectName(u"menuOp_es")
+        self.menuSuporte = QMenu(self.menuBar)
+        self.menuSuporte.setObjectName(u"menuSuporte")
+        MainWindow.setMenuBar(self.menuBar)
 #if QT_CONFIG(shortcut)
         self.lblNomeDoArquivo.setBuddy(self.cbLingua)
 #endif // QT_CONFIG(shortcut)
+
+        self.menuBar.addAction(self.menuArquivo.menuAction())
+        self.menuBar.addAction(self.menuOp_es.menuAction())
+        self.menuBar.addAction(self.menuSuporte.menuAction())
+        self.menuArquivo.addAction(self.actionAbrir_pasta_dos_arquivos)
+        self.menuArquivo.addAction(self.actionSalvar_pesquisa)
+        self.menuOp_es.addAction(self.actionBaixar_novo_pacote_de_l_nguas)
+        self.menuSuporte.addAction(self.actionSobre_o_Softwarew)
+        self.menuSuporte.addAction(self.actionComo_usar_o_softwar)
+        self.menuSuporte.addAction(self.actionContato_com_o_suporte)
 
         self.retranslateUi(MainWindow)
 
@@ -243,8 +290,14 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"TransPy - Tradutor de PDF", None))
         self.actionAcessar_pasta_atual.setText(QCoreApplication.translate("MainWindow", u"Acessar pasta atual", None))
+        self.actionSobre_o_Softwarew.setText(QCoreApplication.translate("MainWindow", u"Sobre o Software", None))
+        self.actionContato_com_o_suporte.setText(QCoreApplication.translate("MainWindow", u"Contato com o suporte", None))
+        self.actionComo_usar_o_softwar.setText(QCoreApplication.translate("MainWindow", u"Como usar o software", None))
+        self.actionBaixar_novo_pacote_de_l_nguas.setText(QCoreApplication.translate("MainWindow", u"Baixar novo pacote de l\u00ednguas.", None))
+        self.actionAbrir_pasta_dos_arquivos.setText(QCoreApplication.translate("MainWindow", u"Abrir pasta dos arquivos", None))
+        self.actionSalvar_pesquisa.setText(QCoreApplication.translate("MainWindow", u"Salvar pesquisa", None))
         self.btnProcurarArquivo.setText(QCoreApplication.translate("MainWindow", u"Selecionar arquivo", None))
         self.lblNomeDoArquivo.setText(QCoreApplication.translate("MainWindow", u"Nome do arquivo", None))
         self.cbLingua.setItemText(0, QCoreApplication.translate("MainWindow", u"Default (English)", None))
@@ -258,5 +311,8 @@ class Ui_MainWindow(object):
         self.btnCopiarTextoTraduzido.setText(QCoreApplication.translate("MainWindow", u"Copiar", None))
         self.btnTraduzir.setText(QCoreApplication.translate("MainWindow", u"Traduzir", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Desenvolvido por Nycolas Galdino", None))
+        self.menuArquivo.setTitle(QCoreApplication.translate("MainWindow", u"Arquivo", None))
+        self.menuOp_es.setTitle(QCoreApplication.translate("MainWindow", u"Op\u00e7\u00f5es", None))
+        self.menuSuporte.setTitle(QCoreApplication.translate("MainWindow", u"Suporte", None))
     # retranslateUi
 

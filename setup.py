@@ -17,7 +17,7 @@ executables = [
 ]
 
 setup(name='TransPy - Tradutor de PDF',
-      version = '1.4',
+      version = '2.0',
       description = 'TransPy é um software cujo objetivo é ler e traduzir um PDF utilizando a linguagem Python como base.',
       options = {'build_exe': build_options},
       executables = executables)

@@ -3,8 +3,7 @@
 /venv
 screens/MainWindow.ui
 /files
-screens/__pycache__/ui_mainwindow.cpython-310.pyc
-files/deFile.txt
-traduction/__pycache__/dict.cpython-310.pyc
-traduction/__pycache__/traduction.cpython-310.pyc
+screens/__pycache__
+traduction/__pycache__
+/__pycache__
 /build

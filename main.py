@@ -2,10 +2,13 @@ import os
 import sys
 from PySide6.QtWidgets import *      # type: ignore
 from PySide6.QtCore import QCoreApplication
+from PySide6.QtGui import QIcon
 from screens.ui_mainwindow import Ui_MainWindow
 import pyperclip as clip
 from traduction.traduction import traduzir, lerArquivo
-from traduction.dict import lerListadeLinguagens
+from traduction.dict import lerListadeLinguagens, atualizarListadeLinguagens
+from subprocess import Popen
+from win10toast_click import ToastNotifier
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -17,6 +20,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #######################################
         self.setupUi(self)
         self.setWindowTitle("TransPy - Tradutor de PDF")
+        self.setWindowIcon(QIcon("./icon/arquivo-python-by-Muhammed-Ali.ico")) 
         self.dict = lerListadeLinguagens()
         
         #Repete a tentativa de leitura do arquivo JSON
@@ -39,7 +43,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btnCopiarTextoPDF.clicked.connect(self.copiarTextoPDF)  # type: ignore
         self.btnCopiarTextoTraduzido.clicked.connect(self.copiarTextoTraduzido)  # type: ignore
         self.btnTraduzir.clicked.connect(self.traduzirTXT)            # type: ignore
-                
+        
+        #######################################
+        #Ações do menu
+        #######################################
+        self.actionBaixar_novo_pacote_de_l_nguas.triggered.connect(self.actBaixarPacoteDeLinguas)            # type: ignore
+        self.actionAbrir_pasta_dos_arquivos.triggered.connect(self.actAbrirPastaArquivos)                     # type: ignore
+        
     def procurarArquivo(self):
         self.arquivo = QFileDialog.getOpenFileName(self, "Open PDF", os.getcwd(), "PDF Files (*.pdf)" )[0]
         
@@ -72,6 +82,49 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def copiarTextoTraduzido(self):
         textoTraduzido = self.enTextoTraduzido.toPlainText()
         clip.copy(textoTraduzido)    
+    
+    def actAbrirPastaArquivos(self):
+        path = os.getcwd() + "/files"
+        path = os.path.realpath(path)
+        
+        self.notificacao("Abrindo o diretório!")
+        
+        Popen(f'explorer "{path}"') 
+    
+    def actSalvarPesquisa(self):
+        pass
+    
+    def actBaixarPacoteDeLinguas(self):
+        #Atualiza a lista de linguagens suportadas pela biblioteca
+        atualizarListadeLinguagens()
+        
+        self.cbLingua.clear()
+        
+        lerListadeLinguagens()
+        
+        self.cbLingua.addItem("Default (English)") 
+        self.cbLingua.addItems(self.keysDict)
+    
+    def actSobreOSoftware(self):
+        pass
+    
+    def actComoUsarOSoftware(self):
+        pass
+    
+    def actContatoComOSuporte(self):
+        pass
+    
+    def notificacao(self, mensagem):
+        notificação = ToastNotifier()
+        
+        notificação.show_toast(
+            title="TransPy",
+            msg=mensagem,
+            icon_path= os.getcwd() + "/icon/arquivo-python-by-Muhammed-Ali.ico", 
+            duration= 5, threaded=True,
+            callback_on_click= None
+        )
+    
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)
