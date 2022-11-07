@@ -47,8 +47,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #######################################
         #Ações do menu
         #######################################
-        self.actionBaixar_novo_pacote_de_l_nguas.triggered.connect(self.actBaixarPacoteDeLinguas)            # type: ignore
-        self.actionAbrir_pasta_dos_arquivos.triggered.connect(self.actAbrirPastaArquivos)                     # type: ignore
+        self.actionBaixar_novo_pacote_de_linguas.triggered.connect(self.actBaixarPacoteDeLinguas)   
+        self.actionAbrir_pasta_dos_arquivos.triggered.connect(self.actAbrirPastaArquivos)     
         
     def procurarArquivo(self):
         self.arquivo = QFileDialog.getOpenFileName(self, "Open PDF", os.getcwd(), "PDF Files (*.pdf)" )[0]
@@ -65,15 +65,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     
     def traduzirTXT(self):
         linguaSelecionada = self.cbLingua.currentText()
-        
-        if linguaSelecionada == "Default (English)":
-            linguaSelecionada = "English (english)"
-        
-        textoLido = self.enTextoPDF.toPlainText()
-                
-        traducao = traduzir(texto=textoLido , linguaSelecionada= self.dict[linguaSelecionada])   # type: ignore
-        
-        self.enTextoTraduzido.setText(QCoreApplication.translate("MainWindow", traducao, None))
+        try:
+            if linguaSelecionada == "Default (English)":
+                linguaSelecionada = "English (english)"
+            
+            self.notificacao(mensagem="Traduzindo o texto para " + linguaSelecionada)
+            
+            textoLido = self.enTextoPDF.toPlainText()
+                    
+            traducao = traduzir(texto=textoLido , linguaSelecionada= self.dict[linguaSelecionada])   # type: ignore
+            
+            self.enTextoTraduzido.setText(QCoreApplication.translate("MainWindow", traducao, None))
+        except:
+            self.notificacao(mensagem="Erro ao traduzir o texto.")
         
     def copiarTextoPDF(self):
         textoPDF = self.enTextoPDF.toPlainText()
@@ -90,10 +94,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.notificacao("Abrindo o diretório!")
         
         Popen(f'explorer "{path}"') 
-    
-    def actSalvarPesquisa(self):
-        pass
-    
+        
     def actBaixarPacoteDeLinguas(self):
         #Atualiza a lista de linguagens suportadas pela biblioteca
         atualizarListadeLinguagens()
@@ -105,15 +106,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.cbLingua.addItem("Default (English)") 
         self.cbLingua.addItems(self.keysDict)
     
-    def actSobreOSoftware(self):
-        pass
-    
-    def actComoUsarOSoftware(self):
-        pass
-    
-    def actContatoComOSuporte(self):
-        pass
-    
     def notificacao(self, mensagem):
         notificação = ToastNotifier()
         
@@ -124,7 +116,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             duration= 5, threaded=True,
             callback_on_click= None
         )
-    
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)
