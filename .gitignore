@@ -2,8 +2,8 @@
 /Catálogo Trurium 2022.pdf
 /venv
 screens/MainWindow.ui
-/files
 screens/__pycache__
 traduction/__pycache__
 /__pycache__
 /build
+.gitignore
