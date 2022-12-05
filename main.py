@@ -57,7 +57,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
        
         lerArquivo(arquivo=self.arquivo)
         
-        pdfFile = open(os.getcwd() + '/files/pdfFile.txt', "r", encoding="utf-8")
+        try:
+            pdfFile = open(os.getcwd() + '/files/pdfFile.txt', "r", encoding="utf-8")
+        except:
+            os.mkdir("files")
+            pdfFile = open(os.getcwd() + '/files/pdfFile.txt', "r", encoding="utf-8")    
+
         texto = pdfFile.read()
         pdfFile.close
         
