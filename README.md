@@ -1,8 +1,7 @@
 # TransPy - Tradutor de PDF
 Já pensou em ler um PDF e traduzir de maneira rápida e simples? Utilize o TransPy!
 
-=======================================================================================
-
+-----
 ## Sobre o projeto
 
 O projeto foi desenvolvido em meio a um problema interno de tradução de um catálogo de produtos. 
