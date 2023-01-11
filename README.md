@@ -1,4 +1,4 @@
-# TransPy - Tradutor de PDF ![Suporta apenas windows](https://img.shields.io/badge/-windows-000?&logo=windows) ![Criado com Python 3](https://img.shields.io/badge/-python3-000?&logo=python3)
+# TransPy - Tradutor de PDF ![Suporta apenas windows](https://img.shields.io/badge/-Windows-000?&logo=windows) ![Criado com Python 3](https://img.shields.io/badge/-Python-000?&logo=python)
 Já pensou em ler um PDF e traduzir de maneira rápida e simples? Utilize o TransPy!
 
 -----
