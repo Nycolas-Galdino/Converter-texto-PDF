@@ -12,7 +12,7 @@ from win10toast_click import ToastNotifier
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self) -> None:
+    def __init__(self) -> None: #Configurações iniciais/globais do projeto
         super(MainWindow, self).__init__()
         
         #######################################
@@ -48,51 +48,54 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #Ações do menu
         #######################################
         self.actionBaixar_novo_pacote_de_linguas.triggered.connect(self.actBaixarPacoteDeLinguas)   
-        self.actionAbrir_pasta_dos_arquivos.triggered.connect(self.actAbrirPastaArquivos)     
+        self.actionAbrir_pasta_dos_arquivos.triggered.connect(self.actAbrirPastaArquivos)    
         
-    def procurarArquivo(self):
+        #######################################
+        #Cria uma pasta chamado files ao abrir o software
+        #######################################
+        os.mkdir(os.getcwd() + "/files") 
+        
+    def procurarArquivo(self): #Abre o explorer e seleciona o arquivo a traduzir
+        
+        #Seleciona o arquivo e coloca seu nome nome na tela
         self.arquivo = QFileDialog.getOpenFileName(self, "Open PDF", os.getcwd(), "PDF Files (*.pdf)" )[0]
-        
         self.lblNomeDoArquivo.setText(QCoreApplication.translate("MainWindow", self.arquivo, None))
        
         lerArquivo(arquivo=self.arquivo)
         
-        try:
-            pdfFile = open(os.getcwd() + '/files/pdfFile.txt', "r", encoding="utf-8")
-        except:
-            os.mkdir("files")
-            pdfFile = open(os.getcwd() + '/files/pdfFile.txt', "r", encoding="utf-8")    
-
-        texto = pdfFile.read()
-        pdfFile.close
+        #Coleta o texto escrito no arquivo pdfFile.txt e o salva em uma variável
+        with open(os.getcwd() + '/files/pdfFile.txt', "r", encoding="utf-8") as pdfFile:
+            texto = pdfFile.read()
         
+        #Adiciona o texto lido dentro da tela
         self.enTextoPDF.setText(QCoreApplication.translate("MainWindow", texto, None))
     
-    def traduzirTXT(self):
+    def traduzirTXT(self): #Traduz o arquivo lido
+        #Lê a lingua selecionada para traduzir
         linguaSelecionada = self.cbLingua.currentText()
         try:
-            if linguaSelecionada == "Default (English)":
+            if linguaSelecionada == "Default (English)": #Caso não selecione nenhuma língua, irá traduzir para uma linguagem padrão 
                 linguaSelecionada = "English (english)"
             
             self.notificacao(mensagem="Traduzindo o texto para " + linguaSelecionada)
             
+            #Lê o texto original e o traduzir para a linguagem selecionada
             textoLido = self.enTextoPDF.toPlainText()
-                    
             traducao = traduzir(texto=textoLido , linguaSelecionada= self.dict[linguaSelecionada])   # type: ignore
             
             self.enTextoTraduzido.setText(QCoreApplication.translate("MainWindow", traducao, None))
         except:
-            self.notificacao(mensagem="Erro ao traduzir o texto.")
+            self.notificacao(mensagem="Erro ao traduzir o texto.") #Notifica caso aja erro durante o processo
         
-    def copiarTextoPDF(self):
+    def copiarTextoPDF(self): #Copia o texto original
         textoPDF = self.enTextoPDF.toPlainText()
         clip.copy(textoPDF)
             
-    def copiarTextoTraduzido(self):
+    def copiarTextoTraduzido(self): #Copia o texto traduzido
         textoTraduzido = self.enTextoTraduzido.toPlainText()
         clip.copy(textoTraduzido)    
     
-    def actAbrirPastaArquivos(self):
+    def actAbrirPastaArquivos(self): #Abre a pasta onde está salvo os arquivos
         path = os.getcwd() + "/files"
         path = os.path.realpath(path)
         
@@ -100,8 +103,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         Popen(f'explorer "{path}"') 
         
-    def actBaixarPacoteDeLinguas(self):
-        #Atualiza a lista de linguagens suportadas pela biblioteca
+    def actBaixarPacoteDeLinguas(self): #Atualiza a lista de linguagens suportadas pela biblioteca
         atualizarListadeLinguagens()
         
         self.cbLingua.clear()
@@ -111,7 +113,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.cbLingua.addItem("Default (English)") 
         self.cbLingua.addItems(self.keysDict)
     
-    def notificacao(self, mensagem):
+    def notificacao(self, mensagem): #Envia uma notificação com base nos critérios selecionados
         notificação = ToastNotifier()
         
         notificação.show_toast(
@@ -122,7 +124,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             callback_on_click= None
         )
     
-if __name__ == "__main__":
+if __name__ == "__main__":  #Inicia o projeto
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
