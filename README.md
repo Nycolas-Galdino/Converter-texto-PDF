@@ -1,8 +1,8 @@
-# TransPy - Tradutor de PDF
+# TransPy - Tradutor de PDF ![Suporta apenas windows](https://img.shields.io/badge/-windows-000?&logo=windows) ![Criado com Python 3](https://img.shields.io/badge/-python3-000?&logo=python3)
 Já pensou em ler um PDF e traduzir de maneira rápida e simples? Utilize o TransPy!
 
 -----
-## Sobre o projeto
+## Sobre o projeto 
 
 O projeto foi desenvolvido em meio a um problema interno de tradução de um catálogo de produtos. 
 O projeto foi desenvolvido completamente utilizando **Python** como linguagem de programação principal e o **Visual Studio Code** como seu interpretador. 
