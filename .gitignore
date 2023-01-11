@@ -1,9 +1,0 @@
-/.vscode
-/Catálogo Trurium 2022.pdf
-/venv
-screens/MainWindow.ui
-screens/__pycache__
-traduction/__pycache__
-/__pycache__
-/build
-.gitignore
