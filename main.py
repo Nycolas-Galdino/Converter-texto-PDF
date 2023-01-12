@@ -53,7 +53,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #######################################
         #Cria uma pasta chamado files ao abrir o software
         #######################################
-        os.mkdir(os.getcwd() + "/files") 
+        try:
+            os.mkdir(os.getcwd() + "/files")
+        except:
+            pass 
         
     def procurarArquivo(self): #Abre o explorer e seleciona o arquivo a traduzir
         
