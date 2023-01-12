@@ -20,7 +20,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #######################################
         self.setupUi(self)
         self.setWindowTitle("TransPy - Tradutor de PDF")
-        self.setWindowIcon(QIcon("./icon/arquivo-python-by-Muhammed-Ali.ico")) 
+        self.setWindowIcon(QIcon("./icon/arquivo-python-icon-by-Muhammed-Ali.ico")) 
         self.dict = lerListadeLinguagens()
         
         #Repete a tentativa de leitura do arquivo JSON
@@ -119,7 +119,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         notificação.show_toast(
             title="TransPy",
             msg=mensagem,
-            icon_path= os.getcwd() + "/icon/arquivo-python-by-Muhammed-Ali.ico", 
+            icon_path= os.getcwd() + "/icon/arquivo-python-icon-by-Muhammed-Ali.ico", 
             duration= 5, threaded=True,
             callback_on_click= None
         )
