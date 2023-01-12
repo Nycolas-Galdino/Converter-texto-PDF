@@ -55,7 +55,6 @@ def lerListadeLinguagens():
     try:
         with open(os.getcwd() + "/traduction/languagestotraduction.json", "r") as file:
             langs =json.load(file)
-            print("Arquivo Langs lido com sucesso")
     except:
         langs = atualizarListadeLinguagens()
        
