@@ -7,7 +7,7 @@ Já pensou em ler um PDF e traduzir de maneira rápida e simples? Utilize o Tran
 O projeto foi desenvolvido em meio a um problema interno de tradução de um catálogo de produtos. 
 O projeto foi desenvolvido completamente utilizando **Python** como linguagem de programação principal e o **Visual Studio Code** como seu interpretador. 
 
-> O projeto foi desenvolvido com o intuito de funcionar apenas com o sistema operacional **Windows**.
+> O projeto foi desenvolvido com o intuito de funcionar apenas com o sistema operacional **Windows >=10**.
 
 ## Requisitos para utilizar o TransPy
 Para comecar a execução do software, será necessário a instalação do python em seu dispositivo, então, você pode acessar o [site oficial](python.org) do python e fazer o download do arquivo .exe, e, após sua instalação, pode prosseguir com o tutorial.
@@ -17,9 +17,9 @@ Para comecar a execução do software, será necessário a instalação do pytho
 Primeiro, devemos abrir o prompt de comando do seu computador. O que você pode fazer para abrir ele é utilizar o comando `Win + R`, escrever o comando `cmd` e pressionar o `Enter`.  Então, ao abrir o prompt de comando, Digite os seguintes comandos:
 
 ```
->cd c:/
+cd c:/
 
->git clone https://github.com/Nycolas-Galdino/Converter-texto-PDF.git 
+git clone https://github.com/Nycolas-Galdino/Converter-texto-PDF.git 
 ```
 
 >ps: Utilize o disco local que preferir, no padrão, é o disco local C:
@@ -32,10 +32,21 @@ Caso ocorra algum erro quando executar o comando GIT, você precisará fazer a i
 Porém, caso dê tudo certo, utilize estas linhas de comando:
 
 ```
-> cd C:/Converter-texto-PDF
+cd C:/Converter-texto-PDF
 
-> pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Estas linhas de comando irão instalar as bibliotecas necessárias para o funcionamento do software, como o PyPDF2 por exemplo. Então, enquanto espera terminar a instalação das bibliotecas, vamos lá buscar outro café! ☕
 
+Após a instalação das bibliotecas necessárias, ainda em seu terminal, utilize o seguinte comando.
+
+```
+cd C:/Converter-texto-PDF
+```
+
+Se todos os passos foram executados corretamente e devidamente, o projeto irá rodar em seu computador devidamente. e abrirá a seguinte tela:
+
+![Tela principal](./github/images/tela-principal.png)
+
+Caso aja algum erro durante a execução do software, favor entrar em contato com [nycolaspimentel12@gmail.com](mailto:nycolaspimentel12@gmail.com), ou pelo GitHub [@Nycolas-Galdino](https://github.com/Nycolas-Galdino).
